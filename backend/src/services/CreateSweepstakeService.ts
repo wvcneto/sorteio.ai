@@ -2,6 +2,8 @@ import { getRepository } from 'typeorm';
 
 import Sweepstake from '../models/Sweepstake';
 
+import AppError from '../errors/AppError';
+
 interface RequestDTO {
   title: string;
   description: string;
@@ -24,22 +26,26 @@ class CreateSweepstakeService {
     owner_id,
     participants,
   }: RequestDTO): Promise<Sweepstake> {
-    const sweepstakesRepository = getRepository(Sweepstake);
+    try {
+      const sweepstakesRepository = getRepository(Sweepstake);
 
-    const sweepstake = sweepstakesRepository.create({
-      title,
-      description,
-      type,
-      award,
-      award_image,
-      date,
-      owner_id,
-      participants,
-    });
+      const sweepstake = sweepstakesRepository.create({
+        title,
+        description,
+        type,
+        award,
+        award_image,
+        date,
+        owner_id,
+        participants,
+      });
 
-    await sweepstakesRepository.save(sweepstake);
+      await sweepstakesRepository.save(sweepstake);
 
-    return sweepstake;
+      return sweepstake;
+    } catch {
+      throw new AppError('Sweepstake does not created.');
+    }
   }
 }
 

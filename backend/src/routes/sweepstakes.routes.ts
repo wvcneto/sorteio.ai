@@ -13,45 +13,37 @@ sweepstakesRouter.use(ensureAuthenticated);
 
 // Create
 sweepstakesRouter.post('/', async (request, response) => {
-  try {
-    const {
-      title,
-      description,
-      type,
-      award,
-      award_image,
-      date,
-      owner_id,
-      participants,
-    } = request.body;
+  const {
+    title,
+    description,
+    type,
+    award,
+    award_image,
+    date,
+    owner_id,
+    participants,
+  } = request.body;
 
-    const createSweepstake = new CreateSweepstakeService();
+  const createSweepstake = new CreateSweepstakeService();
 
-    const sweepstake = await createSweepstake.execute({
-      title,
-      description,
-      type,
-      award,
-      award_image,
-      date,
-      owner_id,
-      participants,
-    });
+  const sweepstake = await createSweepstake.execute({
+    title,
+    description,
+    type,
+    award,
+    award_image,
+    date,
+    owner_id,
+    participants,
+  });
 
-    return response.status(201).json(sweepstake);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.status(201).json(sweepstake);
 });
 
 // List(All)
 sweepstakesRouter.get('/', async (request, response) => {
-  try {
-    const sweepstakes = await getRepository(Sweepstake).find();
-    return response.status(200).json(sweepstakes);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  const sweepstakes = await getRepository(Sweepstake).find();
+  return response.status(200).json(sweepstakes);
 });
 
 export default sweepstakesRouter;
