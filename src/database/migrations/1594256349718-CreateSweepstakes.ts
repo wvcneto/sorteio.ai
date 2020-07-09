@@ -1,6 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export default class CreateSweepstakes1594236810249
+export default class CreateSweepstakes1594256349718
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -9,7 +14,7 @@ export default class CreateSweepstakes1594236810249
         columns: [
           {
             name: 'id',
-            type: 'varchar',
+            type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
@@ -17,22 +22,18 @@ export default class CreateSweepstakes1594236810249
           {
             name: 'title',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'description',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'type',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'award',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'award_image',
@@ -41,18 +42,38 @@ export default class CreateSweepstakes1594236810249
           {
             name: 'date',
             type: 'timestamp with time zone',
-            isNullable: false,
           },
           {
-            name: 'owner',
-            type: 'varchar',
-            isNullable: false,
+            name: 'owner_id',
+            type: 'uuid',
+            isNullable: true, // CASCADE
           },
           {
             name: 'participants',
             type: 'text',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'sweepstakes',
+      new TableForeignKey({
+        columnNames: ['owner_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        onDelete: 'SET NULL',
+        onUpdate: 'CASCADE',
       }),
     );
   }

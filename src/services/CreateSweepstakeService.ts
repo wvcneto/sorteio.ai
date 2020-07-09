@@ -2,14 +2,14 @@ import { getRepository } from 'typeorm';
 
 import Sweepstake from '../models/Sweepstake';
 
-interface Request {
+interface RequestDTO {
   title: string;
   description: string;
   type: string;
   award: string;
   award_image: string;
   date: Date;
-  owner: string;
+  owner_id: string;
   participants: string;
 }
 
@@ -21,9 +21,9 @@ class CreateSweepstakeService {
     award,
     award_image,
     date,
-    owner,
+    owner_id,
     participants,
-  }: Request): Promise<Sweepstake> {
+  }: RequestDTO): Promise<Sweepstake> {
     const sweepstakesRepository = getRepository(Sweepstake);
 
     const sweepstake = sweepstakesRepository.create({
@@ -33,7 +33,7 @@ class CreateSweepstakeService {
       award,
       award_image,
       date,
-      owner,
+      owner_id,
       participants,
     });
 
