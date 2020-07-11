@@ -131,6 +131,7 @@ android {
     defaultConfig {
         applicationId "com.appsorteioai"
         minSdkVersion rootProject.ext.minSdkVersion
+        multiDexEnabled true // adicione essa linha
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"

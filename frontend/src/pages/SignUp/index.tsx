@@ -38,7 +38,9 @@ const SignUp: React.FC = () => {
           email: Yup.string()
             .required('Email orbigatório.')
             .email('Email invalido.'),
-          password: Yup.string().min(6, 'Minimo 6 digitos.'),
+          password: Yup.string()
+            .required('Senha obrigatória.')
+            .min(6, 'Minimo 6 digitos.'),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -74,7 +76,7 @@ const SignUp: React.FC = () => {
       <Background />
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="GoBarber" />
+          <img src={logoImg} alt="Sorteio.AI" />
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu Cadastro</h1>
             <Input name="name" icon={FiUser} placeholder="Nome" />
