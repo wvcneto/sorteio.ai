@@ -22,12 +22,3 @@ target 'appsorteioai' do
     flipper_post_install(installer)
   end
 end
-
-target 'appsorteioai-tvOS' do
-  # Pods for appsorteioai-tvOS
-
-  target 'appsorteioai-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
