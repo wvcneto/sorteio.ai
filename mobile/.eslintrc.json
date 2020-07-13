@@ -37,6 +37,10 @@
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
