@@ -111,7 +111,7 @@ const Profile: React.FC = () => {
             <img
               src={
                 user.avatar
-                  ? user.avatar
+                  ? `http://localhost:3333/files/${user.avatar}`
                   : 'https://image.flaticon.com/icons/png/512/17/17004.png'
               }
               alt={user.name}
