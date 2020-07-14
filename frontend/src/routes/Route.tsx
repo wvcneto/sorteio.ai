@@ -12,12 +12,6 @@ interface RouteProps extends ReactDOMRouteProps {
   component: React.ComponentType;
 }
 
-// Private/Auth
-// true/true = ok
-// true/false = Redirect to login
-// false/true = Redirect to dashboard
-// false/false = ok
-
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component: Component,

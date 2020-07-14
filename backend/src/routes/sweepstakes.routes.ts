@@ -9,7 +9,7 @@ import CreateSweepstakeService from '../services/CreateSweepstakeService';
 
 const sweepstakesRouter = Router();
 
-sweepstakesRouter.use(ensureAuthenticated);
+// sweepstakesRouter.use(ensureAuthenticated);
 
 // Create
 sweepstakesRouter.post('/', async (request, response) => {

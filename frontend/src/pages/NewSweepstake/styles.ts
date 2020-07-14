@@ -40,13 +40,8 @@ export const Profile = styled.div`
       color: #f4ede8;
     }
 
-    a {
-      text-decoration: none;
+    strong {
       color: #ff9000;
-
-      &:hover {
-        opacity: 0.7;
-      }
     }
   }
 
@@ -79,63 +74,5 @@ export const Schedule = styled.div`
 
   p {
     color: #ff9000;
-  }
-`;
-
-export const Sweepstakes = styled.div`
-  margin-top: 32px;
-`;
-
-export const Item = styled.div`
-  background: #3e3b47;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  border-radius: 10px;
-  margin-top: 24px;
-  position: relative;
-
-  &::before {
-    position: absolute;
-    height: 80%;
-    width: 3px;
-    left: 0;
-    top: 10%;
-    content: '';
-    background: #ff9000;
-  }
-
-  img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-  }
-
-  strong {
-    margin-left: 24px;
-    color: #fff;
-  }
-
-  span {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    color: #999591;
-  }
-
-  button {
-    background: #ff9000;
-    border-radius: 10px;
-    border: 3px solid #fff;
-    cursor: pointer;
-
-    svg {
-      color: #fff;
-    }
-  }
-
-  svg {
-    margin: 8px;
   }
 `;
