@@ -14,7 +14,7 @@ import TextArea from '../../components/TextArea';
 
 import { useToast } from '../../hooks/toast';
 
-import { Container, Content, ImageInput } from './styles';
+import { Container, Content, ImageInput, Description } from './styles';
 import { useAuth } from '../../hooks/auth';
 
 interface SweepstakeFormData {
@@ -75,26 +75,6 @@ const Sweepstake: React.FC = () => {
     [addToast, history],
   );
 
-  const handleImageChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) {
-        const data = new FormData();
-
-        data.append('Image', e.target.files[0]);
-
-        api.patch('/sweepstakes/image', data).then(response => {
-          updateUser(response.data);
-
-          addToast({
-            type: 'success',
-            title: 'Image atualizado',
-          });
-        });
-      }
-    },
-    [addToast, updateUser],
-  );
-
   return (
     <Container>
       <header>
@@ -104,28 +84,7 @@ const Sweepstake: React.FC = () => {
           </Link>
         </div>
       </header>
-      <Content>
-        <Form onSubmit={handleSubmit}>
-          <h1>Novo Sorteio</h1>
-
-          <ImageInput>
-            <img
-              src="https://previews.123rf.com/images/arhimicrostok/arhimicrostok1708/arhimicrostok170801315/84517402-gift-box-icon-present-a-personal-offer-gift-wrapping-.jpg"
-              alt="reward"
-            />
-            <label htmlFor="Image">
-              <FiCamera />
-              <input type="file" id="Image" onChange={handleImageChange} />
-            </label>
-          </ImageInput>
-
-          <Input name="title" placeholder="Título" />
-          <Input name="description" placeholder="Descrição" />
-          <Input name="award" placeholder="Premio" />
-          <TextArea name="participants" />
-          <Button type="submit">Confirmar</Button>
-        </Form>
-      </Content>
+      <Content />
     </Container>
   );
 };

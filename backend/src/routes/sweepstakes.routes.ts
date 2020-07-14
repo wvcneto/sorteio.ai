@@ -46,4 +46,10 @@ sweepstakesRouter.get('/', async (request, response) => {
   return response.status(200).json(sweepstakes);
 });
 
+// List(All)
+sweepstakesRouter.get('/', async (request, response) => {
+  const sweepstake = await getRepository(Sweepstake).findOne(request.body.id);
+  return response.status(200).json(sweepstake);
+});
+
 export default sweepstakesRouter;

@@ -10,6 +10,7 @@ import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import NewSweepstake from '../pages/NewSweepstake';
+import Sweepstake from '../pages/Sweepstake';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -19,6 +20,7 @@ const Routes: React.FC = () => (
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/profile" component={Profile} isPrivate />
     <Route path="/new-sweepstake" component={NewSweepstake} isPrivate />
+    <Route path="/sweepstakes" component={Sweepstake} isPrivate />
   </Switch>
 );
 

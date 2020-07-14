@@ -62,6 +62,10 @@ const Dashboard: React.FC = () => {
     history.push('/new-sweepstake');
   };
 
+  const handleToSweepstake = (id: string): void => {
+    history.push(`/sweepstakes/${id}`);
+  };
+
   return (
     <Container>
       <Header>
@@ -115,7 +119,10 @@ const Dashboard: React.FC = () => {
                   {sweepstake.formattedDate}
                 </span>
                 <span>
-                  <Button type="button">
+                  <Button
+                    type="button"
+                    onClick={() => handleToSweepstake(sweepstake.id)}
+                  >
                     <FiEye />
                   </Button>
                 </span>
