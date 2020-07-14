@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { FiPower, FiClock, FiEye } from 'react-icons/fi';
 import {
@@ -39,6 +39,7 @@ interface User {
 const Dashboard: React.FC = () => {
   const { signOut, user } = useAuth();
   const [sweepstakes, setSweepstakes] = useState<Sweepstake[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     async function loadSweepstakes(): Promise<void> {
@@ -56,6 +57,10 @@ const Dashboard: React.FC = () => {
 
     loadSweepstakes();
   }, []);
+
+  const handleToNew = (): void => {
+    history.push('/new-sweepstake');
+  };
 
   return (
     <Container>
@@ -88,7 +93,9 @@ const Dashboard: React.FC = () => {
         <Schedule>
           <div>
             <h1>Meus Sorteios</h1>
-            <Button type="button">Novo Sorteio</Button>
+            <Button type="button" onClick={handleToNew}>
+              Novo Sorteio
+            </Button>
           </div>
           <Sweepstakes>
             {sweepstakes.map(sweepstake => (

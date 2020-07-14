@@ -1,78 +1,123 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  > header {
+    width: 100%;
+    height: 128px;
+    background: #28262e;
 
-export const Header = styled.header`
-  padding: 32px 0;
-  background: #28262e;
-`;
+    display: flex;
+    align-items: center;
 
-export const HeaderContent = styled.div`
-  max-width: 1120px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    div {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
 
-  > img {
-    height: 64px;
+      svg {
+        color: #999591;
+        width: 24px;
+        height: 24px;
+      }
+    }
   }
 `;
 
-export const Profile = styled.div`
+export const Content = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-left: 80px;
+  justify-content: center;
+  margin: -120px auto 0;
+
+  form {
+    margin: 80px 0;
+    width: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      margin-bottom: 24px;
+      font-size: 20px;
+    }
+
+    a {
+      color: #f4ede8;
+      display: block;
+      margin-top: 24px;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: ${shade(0.2, '#f4efe8')};
+      }
+    }
+
+    input[name='old_password'] {
+    }
+  }
+
+  > a {
+    color: #ff9000;
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 16px;
+    }
+
+    &:hover {
+      color: ${shade(0.2, '#ff9000')};
+    }
+  }
+`;
+
+export const ImageInput = styled.div`
+  margin-bottom: 32px;
+  position: relative;
+  align-self: center;
 
   img {
-    width: 64px;
-    height: 64px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
   }
 
-  div {
-    display: flex;
-    flex-direction: column;
-    margin-left: 16px;
-    line-height: 24px;
-
-    span {
-      color: #f4ede8;
-    }
-
-    strong {
-      color: #ff9000;
-    }
-  }
-
-  button {
-    background: transparent;
-    border: 0;
-    margin: 24px 24px 16px 24px;
+  label {
+    width: 48px;
+    height: 48px;
     cursor: pointer;
+    position: absolute;
+    background: #ff9000;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    transition: background-color 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      display: none;
+    }
 
     svg {
-      color: #999591;
       width: 20px;
       height: 20px;
+      color: #312e38;
     }
-  }
-`;
 
-export const Content = styled.main`
-  max-width: 1120px;
-  margin: 32px auto;
-  display: flex;
-`;
-
-export const Schedule = styled.div`
-  flex: 1;
-
-  h1 {
-    font-size: 36px;
-  }
-
-  p {
-    color: #ff9000;
+    &:hover {
+      background: ${shade(0.2, '#ff9000')};
+    }
   }
 `;

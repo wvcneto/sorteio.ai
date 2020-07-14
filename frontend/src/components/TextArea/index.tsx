@@ -5,51 +5,46 @@ import React, {
   useRef,
   useCallback,
 } from 'react';
-import { IconBaseProps } from 'react-icons';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-// import Tooltip from '../Tooltip';
-
 import { Container, Error } from './styles';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+const TextArea: React.FC<TextAreaProps> = ({ name, ...rest }) => {
+  const textAreaRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const { fieldName, defaultValue, error, registerField } = useField(name);
 
-  const handleInputFocus = useCallback(() => {
+  const handleTextAreaFocus = useCallback(() => {
     setIsFocused(true);
   }, []);
 
-  const handleInputBlur = useCallback(() => {
+  const handleTextAreaBlur = useCallback(() => {
     setIsFocused(false);
 
-    setIsFilled(!!inputRef.current?.value);
+    setIsFilled(!!textAreaRef.current?.value);
   }, []);
 
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: inputRef.current,
+      ref: textAreaRef.current,
       path: 'value',
     });
   }, [fieldName, registerField]);
 
   return (
     <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
-      {Icon && <Icon size={20} />}
       <input
         name={name}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        ref={inputRef}
+        onFocus={handleTextAreaFocus}
+        onBlur={handleTextAreaBlur}
+        ref={textAreaRef}
         defaultValue={defaultValue}
         {...rest}
       />
@@ -62,4 +57,4 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   );
 };
 
-export default Input;
+export default TextArea;
